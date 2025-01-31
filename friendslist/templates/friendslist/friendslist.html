@@ -1,5 +1,7 @@
+{% extends "base.html" %}
 {% load static %}
 
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,4 +48,4 @@
         <p>You need to be logged in to see your friends list.</p>
     {% endif %}
 </body>
-</html>
+{% endblock content %}
