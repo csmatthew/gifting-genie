@@ -2,51 +2,70 @@
 {% load static %}
 
 {% block content %}
-    <h1>Friends List</h1>
-    {% if user.is_authenticated %}
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        <ul>
-            {% for friendship in friendships %}
-                <li>
-                    <a href="{% url 'friendsdetail' friendship.friend.id %}">
-                        {{ friendship.user.username }} is friends with {{ friendship.friend.username }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-
-        <h2>Add a Friend</h2>
-        <form method="post" action="{% url 'add_friend' %}">
-            {% csrf_token %}
-            <label for="search_query">Search Username:</label>
-            <input type="text" id="search_query" placeholder="Search for a username">
-            <button type="button" id="search-button">Search</button>
-            <label for="id_friend_username">Friend Username:</label>
-            <input list="username-suggestions" id="id_friend_username" name="friend_username" placeholder="Enter friend's username">
-            <datalist id="username-suggestions"></datalist>
-            <button type="submit">Add Friend</button>
-        </form>
-
-        <h2>Pending Friend Requests</h2>
-        <ul>
-            {% for friendship in pending_friendships %}
-                <li>{{ friendship.user.username }} wants to be friends with you
-                    <form method="post" action="{% url 'confirm_friendship' friendship.id %}">
+<section class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Friends List</h1>
+            {% if user.is_authenticated %}
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <ul class="list-group">
+                    {% for friendship in friendships %}
+                        <li class="list-group-item">
+                            <a href="{% url 'friendsdetail' friendship.friend.id %}">
+                                {{ friendship.user.username }} is friends with {{ friendship.friend.username }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Please <a href="{% url 'account_login' %}">log in</a> to see your friends list.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2>Add a Friend</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'add_friend' %}">
                         {% csrf_token %}
-                        <button type="submit">Confirm</button>
+                        <label for="search_query">Search Username:</label>
+                        <input type="text" id="search_query" class="form-control mb-2" placeholder="Search for a username">
+                        <button type="button" id="search-button" class="btn btn-primary mb-2">Search</button>
+                        <label for="id_friend_username">Friend Username:</label>
+                        <input list="username-suggestions" id="id_friend_username" name="friend_username" class="form-control mb-2" placeholder="Enter friend's username">
+                        <datalist id="username-suggestions"></datalist>
+                        <button type="submit" class="btn btn-success">Add Friend</button>
                     </form>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Please <a href="{% url 'account_login' %}">log in</a> to see your friends list.</p>
-    {% endif %}
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Pending Friend Requests</h2>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for friendship in pending_friendships %}
+                            <li class="list-group-item">
+                                {{ friendship.user.username }} wants to be friends with you
+                                <form method="post" action="{% url 'confirm_friendship' friendship.id %}" class="mt-2">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success">Confirm</button>
+                                </form>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock content %}
 
 {% block extra_body %}
