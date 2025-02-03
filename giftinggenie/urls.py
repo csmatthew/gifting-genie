@@ -25,7 +25,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('accounts/', include('allauth.urls')),
     path('friends/', include('friendslist.urls')),
-    path('myaccount/', include('myaccount.urls')),
+    path('myaccount/', include('.urls')),
     path('wishlist/', include('wishlist.urls')),
 ]
 
