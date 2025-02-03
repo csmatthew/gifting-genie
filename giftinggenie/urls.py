@@ -27,6 +27,7 @@ urlpatterns = [
     path('friends/', include('friendslist.urls')),
     path('myaccount/', include('myaccount.urls')),
     path('wishlist/', include('wishlist.urls')),
+    path('planner/', include('planner.urls', namespace='planner')),
 ]
 
 if settings.DEBUG:

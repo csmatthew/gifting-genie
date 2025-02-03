@@ -52,3 +52,17 @@ def confirm_friendship(request, friendship_id):
         friendship.confirmed = True
         friendship.save()
         return HttpResponseRedirect(reverse('friendslist'))
+
+
+@login_required
+def add_friend(request):
+    if request.method == 'POST':
+        form = AddFriendForm(request.POST, user=request.user)
+        if form.is_valid():
+            friend_username = form.cleaned_data['friend_username']
+            friend = User.objects.get(username=friend_username)
+            Friendship.objects.create(user=request.user, friend=friend)
+            return redirect('friendslist')
+    else:
+        form = AddFriendForm(user=request.user)
+    return render(request, 'friendslist/add_friend.html', {'form': form})
