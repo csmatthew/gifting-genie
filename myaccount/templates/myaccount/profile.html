@@ -18,11 +18,11 @@
 {% endif %}
 
 <!-- Main content -->
-<div class="container-fluid p-0">
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-12 col-md-3 text-center position-relative">
-                <div class="profile-picture-container">
+<div class="container-fluid p-0 flex-grow-1 d-flex">
+    <div class="container mt-5 d-flex flex-column flex-grow-1">
+        <div class="row flex-grow-1 d-flex">
+            <div class="col-12 col-md-3 text-center position-relative d-flex flex-column">
+                <div class="profile-picture-container position-relative">
                     {% if myaccount.profile_image %}
                     <img src="{{ myaccount.profile_image.url }}" class="rounded-circle img-fluid"
                         alt="{{ myaccount.title }}">
@@ -35,10 +35,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 profile-content-container d-flex flex-column flex-grow-1">
                 <h2>{{ myaccount.title }}</h2>
                 {{ myaccount.content | safe }}
-                <div class="col-12 my-5">
+                <div class="col-12 my-5 flex-grow-1">
                     <div class="text-container">
                         <h2>Welcome {{ myaccount.user.username }} to your page</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
@@ -49,11 +49,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 d-flex flex-column align-items-center justify-content-center">
                 <div class="d-flex flex-column align-items-center">
-                    <a class="btn btn-primary btn-rounded mb-2">Wishlist</a>
-                    <a class="btn btn-primary btn-rounded mb-2">Friends</a>
-                    <a class="btn btn-primary btn-rounded mb-2">Planner</a>
+                    <a href="" class="btn btn-primary btn-rounded mb-4">Wishlist</a>
+                    <a href="" class="btn btn-primary btn-rounded mb-4">Friends</a>
+                    <a href="" class="btn btn-primary btn-rounded mb-4">Planner</a>
                 </div>
             </div>
         </div>

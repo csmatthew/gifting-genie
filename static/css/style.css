@@ -286,6 +286,18 @@ body.menu-open .menu {
     margin: 50px auto;
 }
 
+.profile-content-container {
+    background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+
 /* index.html */
 .feature-image {
     width: 100%;
@@ -348,14 +360,7 @@ footer {
 /* my account */
 .profile-picture-container {
     position: relative;
-    display: inline-block;
-}
-
-.profile-picture-container img {
-    width: 150px;
-    /* Adjust the size as needed */
-    height: 150px;
-    /* Adjust the size as needed */
+    margin: 20%;
 }
 
 .edit-profile-picture {
@@ -376,6 +381,10 @@ footer {
 
 .edit-profile-picture:hover {
     background-color: var(--bs-gray);
+}
+
+.edit-profile-picture i {
+    font-size: 1.5rem; /* Adjust icon size as needed */
 }
 
 
