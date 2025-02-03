@@ -178,8 +178,8 @@ h1.brand {
     height: 25px;
     object-fit: cover;
     margin-right: 10px;
-    opacity: 1 !important; /* Ensure profile image is fully opaque */
-    transition: none !important; /* Exempt profile image from hover transition */
+    opacity: 1 !important;
+    transition: none !important;
 }
 
 .nav-link {
@@ -197,7 +197,7 @@ h1.brand {
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 1000; /* Ensure it stays above other content */
+    z-index: 1000;
     padding: 10px;
     background-color: var(--bs-primary);
     color: var(--bs-white);
@@ -209,13 +209,13 @@ h1.brand {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    z-index: 999; /* Ensure it stays above other content but below the menu */
-    display: none; /* Hide the overlay by default */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
 }
 
 body.menu-open .overlay {
-    display: block; /* Show the overlay when the menu is open */
+    display: block;
 }
 
 .overlay {
@@ -224,13 +224,13 @@ body.menu-open .overlay {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    z-index: 999; /* Ensure it stays above other content but below the menu */
-    display: none; /* Hide the overlay by default */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
 }
 
 body.menu-open .overlay {
-    display: block; /* Show the overlay when the menu is open */
+    display: block;
 }
 
 .toggler-container {
@@ -241,7 +241,7 @@ body.menu-open .overlay {
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 1000; /* Ensure it stays above other content */
+    z-index: 1000;
     padding: 10px;
     background-color: var(--bs-primary);
     color: var(--bs-white);
@@ -252,16 +252,16 @@ body.menu-open .overlay {
     position: fixed;
     top: 0;
     right: 0;
-    width: 250px; /* Adjust width as needed */
+    width: 250px;
     height: 100%;
     background-color: var(--bs-body-bg);
-    z-index: 1001; /* Ensure it stays above other content */
-    transform: translateX(100%); /* Hide the menu by default */
+    z-index: 1001;
+    transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
 }
 
 body.menu-open .menu {
-    transform: translateX(0); /* Show the menu when the body has the 'menu-open' class */
+    transform: translateX(0);
 }
 
 
@@ -298,7 +298,7 @@ body.menu-open .menu {
 
 /* containers */
 .app-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -306,7 +306,7 @@ body.menu-open .menu {
 }
 
 .login-container {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -315,7 +315,7 @@ body.menu-open .menu {
 }
 
 .profile-content-container {
-    background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.4);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -326,7 +326,7 @@ body.menu-open .menu {
 }
 
 .about-container {
-    background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent white background */
+    background-color: rgba(255, 255, 255, 0.4);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -334,7 +334,24 @@ body.menu-open .menu {
     flex-grow: 1;
 }
 
+/* cards */
+.card {
+    border: none !important;
+}
 
+.card-body {
+    background-color: #fff !important;
+}
+
+.card-body .card-title,
+.card-body .card-text,
+.card-body .text-muted {
+    color: #000 !important;
+}
+
+.card-body .text-muted {
+    color: #6c757d !important;
+}
 /* index.html */
 .feature-image {
     width: 100%;
