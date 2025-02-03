@@ -61,10 +61,22 @@
                             </a>
                         </li>
                         {% endif %}
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link trans-text" aria-current="page" href="#">Home</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="nav-link trans-text" href="{% url 'friendslist' %}">Friends List</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link trans-text" href="{% url 'wishlist' %}">Wishlist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link trans-text" href="{% url 'planner:planner_view' %}">Planner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link trans-text" href="{% url 'myaccount:myaccount_home' %}">My Account</a>
+                        </li>
+                        <!-- <li class="nav-item">
                             <a class="nav-link trans-text" href="#">About Us</a>
                         </li>
                         <li class="nav-item">
@@ -72,7 +84,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link trans-text" href="#">Forgot Password?</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             {% if user.is_authenticated %}
                             <a class="btn btn-danger btn-rounded ms-2" href="{% url 'account_logout' %}">
