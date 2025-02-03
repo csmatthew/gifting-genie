@@ -1,5 +1,5 @@
-# Gifting-Genie - A Gift Giving Alert System
-Created by: Phillip Kershaw, Christopher Matthews, Geralding Edwards and Joanna O'Connor. 
+# Gifting Genie - A Gift Giving Alert System
+Created by: Phillip Kershaw, Christopher Matthew, Geraldine Edwards and Joanna O'Connor. 
 
 <img width="612" alt="" src="readme.docs/...">
 

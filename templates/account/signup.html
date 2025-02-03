@@ -1,9 +1,12 @@
-{% extends "account/base_entrance.html" %}
+{% extends "base.html" %}
 {% load allauth i18n %}
+
 {% block head_title %}
     {% trans "Signup" %}
 {% endblock head_title %}
+
 {% block content %}
+<div class="login-container">
     {% element h1 %}
         {% trans "Sign Up" %}
     {% endelement %}
@@ -26,20 +29,11 @@
                 {{ redirect_field }}
             {% endslot %}
             {% slot actions %}
-                {% element button tags="prominent,signup" type="submit" %}
+            <button type="submit" class="btn btn-log btn-rounded">
                     {% trans "Sign Up" %}
-                {% endelement %}
+            </button>
             {% endslot %}
         {% endelement %}
     {% endif %}
-    {% if PASSKEY_SIGNUP_ENABLED %}
-        {% element hr %}
-        {% endelement %}
-        {% element button href=signup_by_passkey_url tags="prominent,signup,outline,primary" %}
-            {% trans "Sign up using a passkey" %}
-        {% endelement %}
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+</div>
 {% endblock content %}

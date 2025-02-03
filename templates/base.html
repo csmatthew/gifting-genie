@@ -21,49 +21,87 @@
 
     <!-- Custom CSS-->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<<<<<<< HEAD
     {% block extra_head %}
     {% endblock extra_head %}
+=======
+    <link rel="stylesheet" href="{% static 'css/giftbox.css' %}">
+>>>>>>> main
 
-    <title>Gift Genie</title>
+    <title>{% block title %}Gifting Genie{% endblock %}</title>
 
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <i class="fa-solid fa-wand-magic-sparkles me-2 brand-icon"></i>
-                <h1 class="brand mb-0">Gift Genie</h1>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="brand-container d-flex align-items-center">
+                <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+                    <img src="https://res.cloudinary.com/dqm93egis/image/upload/v1738539019/gifting-genie-small-white_gbr6kf.png"
+                        alt="Gifting Genie Logo" class="brand-icon me-2" width="40" height="40">
+                    <h1 class="brand mb-0">Gift Genie</h1>
+                </a>
+            </div>
+            <div class="toggler-container position-absolute top-0 end-0 p-3">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Help</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Forgot Password?</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-primary btn-rounded ms-2" href="#" data-bs-toggle="modal"
-                            data-bs-target="#loginModal">Log in</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-secondary btn-rounded ms-2" href="#">Sign up</a>
-                    </li>
-                </ul>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link d-flex align-items-center profile-link"
+                                href="{% url 'myaccount:myaccount_home' %}">
+                                {% if user.myaccount.profile_image %}
+                                <img src="{{ user.myaccount.profile_image.url }}" alt="Profile Image"
+                                    class="rounded-circle profile-image">
+                                {% else %}
+                                <img src="https://res.cloudinary.com/dqm93egis/image/upload/v1738488445/nobody_l7bbqh.jpg"
+                                    alt="Profile Image" class="rounded-circle profile-image">
+                                {% endif %}
+                                <span class="profile-text">{{ user.username }}</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link trans-text" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link trans-text" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link trans-text" href="#">Help</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link trans-text" href="#">Forgot Password?</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if user.is_authenticated %}
+                            <a class="btn btn-danger btn-rounded ms-2" href="{% url 'account_logout' %}">
+                                Log out
+                            </a>
+                            {% else %}
+                            <a class="btn btn-primary btn-rounded ms-2" href="{% url 'account_login' %}">
+                                Log in
+                            </a>
+                            {% endif %}
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-secondary btn-rounded ms-2" href="#">Sign up</a>
+                        </li>
+                        <!-- Add the toggle button here -->
+                        <li class="nav-item">
+                            <button id="theme-toggle" onclick="toggleTheme()" class="btn btn-secondary btn-rounded ms-2"
+                                aria-label="Enable Dark Mode">
+                                <i id="theme-icon" class="fas fa-moon"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
     </nav>
 
     <main>
@@ -72,33 +110,7 @@
         {% endblock content %}
     </main>
 
-    <!-- Log In Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Log In</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="{% url 'account_login' %}">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="loginEmail" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="loginEmail" name="login" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="loginPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="loginPassword" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Log In</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer class="footer bg-light text-center text-lg-start mt-auto">
+    <footer class="footer text-center text-lg-start mt-auto">
         <div class="container p-4">
             <div class="row">
                 <div class="col-lg-12 text-center footer-icons">
@@ -126,6 +138,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/script' %}"></script>
 </body>
 
 </html>

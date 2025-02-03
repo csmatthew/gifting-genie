@@ -2,12 +2,7 @@
 {% load static %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friends</title>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var searchUsernamesUrl = "{% url 'search-usernames' %}";
@@ -24,10 +19,11 @@
         </ul>
 
         <h2>Add a Friend</h2>
-        <form method="post">
+        <form method="post" action="{% url 'add_friend' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <input list="username-suggestions" id="id_friend_username" name="friend_username">
+            <label for="id_friend_username">Friend Username:</label>
+            <input list="username-suggestions" id="id_friend_username" name="friend_username" placeholder="Enter friend's username">
             <datalist id="username-suggestions"></datalist>
             <button type="button" id="search-button">Search</button>
             <button type="submit">Add Friend</button>
@@ -45,7 +41,6 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>You need to be logged in to see your friends list.</p>
+        <p>Please <a href="{% url 'account_login' %}">log in</a> to see your friends list.</p>
     {% endif %}
-</body>
-{% endblock content %}
+{% endblock %}
