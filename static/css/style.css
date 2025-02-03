@@ -134,7 +134,7 @@ nav {
     align-items: center;
 }
 
-.brand {
+h1.brand {
     font-family: "Pacifico", serif;
     font-size: 2rem;
     font-weight: 400;
