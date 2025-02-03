@@ -77,6 +77,7 @@ The User model is the standard Django Allauth model
 **Purpose and Intended Audience of Gifting-Genie**
 
 PURPOSE
+
 Gifting-Genie is designed to simplify and enhance the experience of managing events, gift wishlists, and social connections. Its primary goal is to provide users with an efficient, user-friendly platform to keep track of important dates, desired gifts, and their network of friends. By integrating event management, wishlist tracking, and friend interactions in a single application, Gifting-Genie aims to make gift-giving and event planning more organized and enjoyable.
 
 INTENDED AUDIENCE
@@ -103,7 +104,7 @@ Title | User story | MoSCoW prioritisation |
 **View Friend's Profile** | As a **registered user** I want to **view my friend's profile** so that I can **see their events and wishlist.** | Could have |
 
   
-We used [GitHub Projects](https://github.com/Philgck/gifting-genie/projects?query=is%3Aopen) to create a project board and populated it with user stories and added labels according to MoSCoW prioritisation.
+We used [GitHub Projects](https://github.com/users/Philgck/projects/13) to create a project board and populated it with user stories and added labels according to MoSCoW prioritisation.
 All of the 'must have' user stories ###### are/were not completed ~~with any other issues being carried over to the next sprint of the project development.~~
 
 ![Project Board](readme.docs/project_board_Moscow_labels.png)
