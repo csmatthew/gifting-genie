@@ -7,6 +7,7 @@ from .models import Friendship
 from .forms import AddFriendForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 def search_usernames(request):
@@ -62,6 +63,11 @@ def add_friend(request):
             friend_username = form.cleaned_data['friend_username']
             friend = User.objects.get(username=friend_username)
             Friendship.objects.create(user=request.user, friend=friend)
+            return redirect('friendslist')  # Redirect to the friends list page
+        else:
+            # Add an error message if the form is invalid
+            for error in form.errors.values():
+                messages.error(request, error)
             return redirect('friendslist')
     else:
         form = AddFriendForm(user=request.user)
