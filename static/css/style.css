@@ -6,6 +6,7 @@
 :root,
 [data-theme="light"] {
     --bs-blue: #3a8fd9;
+    --bs-baby-blue: #89cff0;
     --bs-indigo: #6610f2;
     --bs-purple: #686dc3;
     --bs-pink: #e83283;
@@ -25,6 +26,7 @@
 /* Dark Mode */
 [data-theme="dark"] {
     --bs-blue: #1e3a5f;
+    --bs-baby-blue: #4a7c9f;
     --bs-indigo: #3e1a8a;
     --bs-purple: #3e3a6d;
     --bs-pink: #8a1a4a;
