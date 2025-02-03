@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Add Event</h1>
+    <h1>Edit Event</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add Event</button>
+        <button type="submit">Save Changes</button>
     </form>
-    <a href="{% url 'user_calendar' user.id %}">Back to Calendar</a>
+    <a href="{% url 'planner:planner_view' %}">Back to Calendar</a>
 {% endblock %}

@@ -7,5 +7,5 @@
         {% csrf_token %}
         <button type="submit">Delete</button>
     </form>
-    <a href="{% url 'user_calendar' user.id %}">Back to Calendar</a>
+    <a href="{% url 'planner:planner_view' %}">Back to Calendar</a>
 {% endblock %}
