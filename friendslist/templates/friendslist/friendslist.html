@@ -13,14 +13,17 @@
         {% endif %}
         <ul>
             {% for friendship in friendships %}
-                <li>{{ friendship.user.username }} is friends with {{ friendship.friend.username }}</li>
+                <li>
+                    <a href="{% url 'friendsdetail' friendship.friend.id %}">
+                        {{ friendship.user.username }} is friends with {{ friendship.friend.username }}
+                    </a>
+                </li>
             {% endfor %}
         </ul>
 
         <h2>Add a Friend</h2>
         <form method="post" action="{% url 'add_friend' %}">
             {% csrf_token %}
-            {{ form.as_p }}
             <label for="search_query">Search Username:</label>
             <input type="text" id="search_query" placeholder="Search for a username">
             <button type="button" id="search-button">Search</button>

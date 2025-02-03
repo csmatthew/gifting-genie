@@ -8,6 +8,8 @@ from .forms import AddFriendForm
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from planner.models import Planner
+from wishlist.models import WishlistItem
 
 
 def search_usernames(request):
@@ -21,17 +23,14 @@ def search_usernames(request):
 
 @login_required
 def friendship_list(request):
-    if request.user.is_authenticated:
-        friendships = Friendship.objects.filter(
-            user=request.user, confirmed=True
-            )
-        return render(
-            request,
-            'friendslist/friendslist.html',
-            {'friendships': friendships}
-            )
-    else:
-        return redirect('account_login')
+    friendships = Friendship.objects.filter(user=request.user, confirmed=True)
+    pending_friendships = Friendship.objects.filter(friend=request.user, confirmed=False)
+    form = AddFriendForm(user=request.user)
+    return render(request, 'friendslist/friendslist.html', {
+        'friendships': friendships,
+        'pending_friendships': pending_friendships,
+        'form': form
+    })
 
 
 class FriendshipListView(ListView):
@@ -72,3 +71,15 @@ def add_friend(request):
     else:
         form = AddFriendForm(user=request.user)
     return render(request, 'friendslist/add_friend.html', {'form': form})
+
+
+@login_required
+def friendsdetail(request, friend_id):
+    friend = get_object_or_404(User, id=friend_id)
+    events = Planner.objects.filter(user=friend)
+    wishlist_items = WishlistItem.objects.filter(user=friend)
+    return render(request, 'friendslist/frienddetail.html', {
+        'friend': friend,
+        'events': events,
+        'wishlist_items': wishlist_items
+    })
