@@ -362,17 +362,20 @@ footer {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    background-color: var(--contrast-bg);
-    color: var(--primary-bg);
+    background-color: var(--bs-primary);
+    color: var(--bs-white);
     border-radius: 50%;
-    width: 25px;
-    /* Adjust the size as needed */
-    height: 25px;
-    /* Adjust the size as needed */
+    width: 2em;
+    height: 2em;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile-picture:hover {
+    background-color: var(--bs-gray);
 }
 
 
