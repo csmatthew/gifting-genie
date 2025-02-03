@@ -65,6 +65,22 @@
     color: var(--bs-white);
 }
 
+[data-theme="light"] .title-text{
+    color: var(--bs-black);
+}
+[data-theme="dark"] .title-text{
+    color: var(--bs-black);
+}
+
+[data-theme="light"] .main-title-text{
+    font-family: "Pacifico", serif;
+    color: var(--bs-primary);
+}
+[data-theme="dark"] .main-title-text{
+    font-family: "Pacifico", serif;
+    color: var(--bs-primary);
+}
+
 
 
 /* global */
@@ -276,7 +292,19 @@ body.menu-open .menu {
     border-radius: 50px;
 }
 
+.form-control {
+    background-color: var(--bs-white)
+}
+
 /* containers */
+.app-container {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+}
+
 .login-container {
     background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
     padding: 20px;

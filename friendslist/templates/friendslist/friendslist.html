@@ -2,76 +2,69 @@
 {% load static %}
 
 {% block content %}
-<section class="container mt-5">
-    <div class="row">
-        <div class="col-md-4">
-            <h1>Friends List</h1>
-            {% if user.is_authenticated %}
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                <ul class="list-group">
-                    {% for friendship in friendships %}
-                        <li class="list-group-item">
-                            <a href="{% url 'friendsdetail' friendship.friend.id %}">
-                                {{ friendship.user.username }} is friends with {{ friendship.friend.username }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>Please <a href="{% url 'account_login' %}">log in</a> to see your friends list.</p>
-            {% endif %}
-        </div>
-        <div class="col-md-8">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h2>Add a Friend</h2>
-                </div>
-                <div class="card-body">
-                    <form method="post" action="{% url 'add_friend' %}">
-                        {% csrf_token %}
-                        <label for="search_query">Search Username:</label>
-                        <input type="text" id="search_query" class="form-control mb-2" placeholder="Search for a username">
-                        <button type="button" id="search-button" class="btn btn-primary mb-2">Search</button>
-                        <label for="id_friend_username">Friend Username:</label>
-                        <input list="username-suggestions" id="id_friend_username" name="friend_username" class="form-control mb-2" placeholder="Enter friend's username">
-                        <datalist id="username-suggestions"></datalist>
-                        <button type="submit" class="btn btn-success">Add Friend</button>
-                    </form>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h2>Pending Friend Requests</h2>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        {% for friendship in pending_friendships %}
-                            <li class="list-group-item">
-                                {{ friendship.user.username }} wants to be friends with you
-                                <form method="post" action="{% url 'confirm_friendship' friendship.id %}" class="mt-2">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-success">Confirm</button>
-                                </form>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+<div class="app-container mt-5 d-flex flex-column flex-grow-1 align">
+    <h1 class="main-title-text">Friends List</h1>
+    {% if user.is_authenticated %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <ul>
+        {% for friendship in friendships %}
+        <li>
+            <a href="{% url 'friendsdetail' friendship.friend.id %}">
+                {{ friendship.user.username }} is friends with {{ friendship.friend.username }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="title-text">Add a Friend</h2>
+    <form method="post" action="{% url 'add_friend' %}" class="w-100">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="search_query" class="form-label">Search Username:</label>
+            <div class="input-group">
+                <input type="text" id="search_query" class="form-control" placeholder="Search for a username">
+                <button type="button" id="search-button" class="btn btn-primary">Search</button>
             </div>
         </div>
+        <div class="mb-3">
+            <label for="id_friend_username" class="form-label">Friend Username:</label>
+            <input list="username-suggestions" id="id_friend_username" name="friend_username" class="form-control"
+                placeholder="Enter friend's username">
+            <datalist id="username-suggestions"></datalist>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Friend</button>
+    </form>
+
+    <div class="container mt-5">
+        <h2 class="title-text">Pending Friend Requests</h2>
+        <ul class="list-group">
+            {% for friendship in pending_friendships %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ friendship.user.username }} wants to be friends with you
+                <form method="post" action="{% url 'confirm_friendship' friendship.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Confirm</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
-</section>
+    {% else %}
+    <p>Please <a href="{% url 'account_login' %}">log in</a> to see your friends list.</p>
+    {% endif %}
+</div>
 {% endblock content %}
 
 {% block extra_body %}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        var searchUsernamesUrl = "{% url 'search-usernames' %}";
-    </script>
-    <script src="{% static 'js/friendsearch.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var searchUsernamesUrl = "{% url 'search-usernames' %}";
+</script>
+<script src="{% static 'js/friendsearch.js' %}"></script>
 {% endblock extra_body %}
