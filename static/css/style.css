@@ -107,6 +107,10 @@ nav {
     transform: scale(1.1);
 }
 
+.brand-container {
+    display: inline-flex;
+    align-items: center;
+}
 
 .brand {
     font-family: "Pacifico", serif;
@@ -117,8 +121,8 @@ nav {
 }
 
 .brand-icon {
-    font-size: 3rem;
-    color: var(--bs-white);
+    width: 60px;
+    height: 60px;
 }
 
 .profile-link {
