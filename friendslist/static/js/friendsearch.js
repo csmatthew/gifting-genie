@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#search-button').on('click', function() {
-        var query = $('#id_friend_username').val();
+        var query = $('#search_query').val();
         if (query.length > 2) {
             $.ajax({
                 url: "{% url 'search-usernames' %}",
