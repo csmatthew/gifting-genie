@@ -5,7 +5,7 @@ Created by: Phillip Kershaw, Christopher Matthew, Geraldine Edwards and Joanna O
 
 
 link to Heroku (live page)
-> [View live project here]()
+> [View live project here](https://gift-genie-bb00e28764e5.herokuapp.com/)
 
 Github link 
 > [view Github repo here](https://github.com/Philgck/gifting-genie-two)
